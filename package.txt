@@ -1,0 +1,5 @@
+NAME=kmod
+VERSION=24
+REVISION=1
+SRC=https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-24.tar.xz
+SRCMD5=08297dfb6f2b3f625f928ca3278528af
