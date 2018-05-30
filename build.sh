@@ -1,14 +1,17 @@
 #!/bin/bash
+# Configure
 ./configure --prefix=/usr          \
             --bindir=/bin          \
             --sysconfdir=/etc      \
             --with-rootlibdir=/lib \
             --with-xz              \
-            --with-zlib
-make -j $SHED_NUM_JOBS
-make DESTDIR=${SHED_FAKE_ROOT} install
-mkdir -v ${SHED_FAKE_ROOT}/sbin
-for target in depmod insmod lsmod modinfo modprobe rmmod; do
-    ln -sv ../bin/kmod ${SHED_FAKE_ROOT}/sbin/$target
+            --with-zlib &&
+# Build and Install
+make -j $SHED_NUM_JOBS &&
+make DESTDIR="$SHED_FAKE_ROOT" install &&
+# Rearrange
+mkdir -v "${SHED_FAKE_ROOT}/sbin" || exit 1
+for SHED_PKG_LOCAL_TARGET in depmod insmod lsmod modinfo modprobe rmmod; do
+    ln -sfv ../bin/kmod "${SHED_FAKE_ROOT}/sbin/${SHED_PKG_LOCAL_TARGET}" || exit 1
 done
-ln -sv kmod ${SHED_FAKE_ROOT}/bin/lsmod
+ln -sfv kmod "${SHED_FAKE_ROOT}/bin/lsmod"

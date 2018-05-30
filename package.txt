@@ -1,5 +1,7 @@
 NAME=kmod
-VERSION=24
+VERSION=25
 REVISION=1
-SRC=https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-24.tar.xz
-SRCMD5=08297dfb6f2b3f625f928ca3278528af
+SRC=https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-25.tar.xz
+SRCMD5=34f325cab568f842fdde4f8b2182f220
+OPTIONS=bootstrap|release
+DEFAULTS=release
